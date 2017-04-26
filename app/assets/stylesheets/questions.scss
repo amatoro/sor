@@ -1,3 +1,79 @@
-// Place all the styles related to the Questions controller here.
+// Place all the styles related to the Notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// General Styles
+body {
+  color:#333335;
+}
+
+.margin {margin:0 0 20px}
+
+.margin-side {margin:0 10px}
+
+a {
+  color:#26BEFF;
+  text-decoration: none;
+  }
+
+// Navigation Styles
+nav.navbar {
+  background-color: #0AAFFA;
+  border-radius: 0;
+
+  a {
+    color:#ffffff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color:#FFFFFF;
+  }
+  .navbar-toggle {
+    border-color:#FFF;
+
+    .icon-bar {
+      background-color:#FFFFFF;
+    }
+  }
+
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+  padding:5px 0;
+}
+
+//Alerts Style
+
+.alert-danger {
+  background-color:#EB351F;
+  color:#FFFFFF;
+}
+
+.alert-success {
+  background-color:#95C82C;
+  color:#FFFFFF;
+}
+
+
+//Panels 
+
+.panel-title {
+  font-size: 12px;
+}
+
+.panel-body {
+  font-size: 10px;
+  padding:5px;
+  text-align: center;
+
+  .btn-group {
+    margin-top:10px;
+  }
+}

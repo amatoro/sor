@@ -1,2 +1,14 @@
-<h1>Questions#edit</h1>
-<p>Find me in app/views/questions/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-12 ">
+    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2>Edit Question</h2>
+    </div>
+    <%= render 'form', action: 'Save changes' %>
+  </div>
+</div>

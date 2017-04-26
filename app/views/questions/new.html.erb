@@ -1,2 +1,12 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4 col-md-offset-4">
+    <h2>New Question</h2>
+    <%= render :partial => 'form', :locals => {:action => "Create Question"} %>
+  </div>
+</div>
+

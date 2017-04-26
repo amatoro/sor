@@ -1,2 +1,21 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="col-xs-12 margin">
+      <%= link_to 'New Question', new_question_path, class: 'btn btn-default pull-right' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+<% if @questions.present? %>
+  <% @questions.each do |question| %>
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h3><%= link_to question.title, question %></h3>
+      </div>
+      <h5></h5>
+      <h6><%= question.updated_at.localtime.strftime("Created on %d/%m/%Y at %I:%M%p") %></h6>    
+    </div>
+  <% end %>
+<% end %>
+</div>

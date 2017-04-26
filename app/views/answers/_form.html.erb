@@ -1,0 +1,12 @@
+<%= form_for ([ @question, @answer ]) do |f| %>
+
+<h3>Tu respuesta</h3>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
+  </div>
+  
+  <%= f.submit "Answer", class: 'btn btn-default' %>
+ 
+<% end %> 

@@ -1,2 +1,87 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<div class="row">
+  <div class="col-xs-12 ">
+    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right margin-side' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2><%= @question.title %></h2>
+    </div>
+  </div>
+  <div class="col-xs-1 col-md-1"></div>
+  <div class="col-xs-8 col-md-9">
+    <div class="content"> 
+      <p><%= @question.content %></p>
+    </div>
+  </div>
+  <div class="col-xs-3 col-md-2">
+    <div class="content-footer">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title">by <%= @question.user.email.split('@')[0] %></p>
+        </div>
+        <div class="panel-body">
+          <div>
+            <p><%= @question.created_at.localtime.strftime("asked %b %d, %y at %I:%M%p") %></p>
+          </div>  
+          <div class="btn-group btn-group-xs pull-right" role="group">
+            <% if @question.user == current_user %>
+              <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-default' %>
+              <%= link_to 'Delete', @question, :method => :delete, data: { confirm: "Are you sure you want to delete this entry?" }, class: 'btn btn-default' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr> <hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h3><%= @question.answers.count %> <%= "Answer".pluralize(@question.answers.count)  %></h3>
+    </div>
+  </div>
+</div>
+
+
+<% @question.answers.each do |answer| %>
+  <div class="row">
+    <div class="col-xs-1 col-md-1"></div>
+    <div class="col-xs-11 col-md-9">
+      <div class="content">
+        <p><%= answer.content %></p>
+      </div>
+    </div>   
+    <div class="col-xs-3 col-md-2">
+      <div class="footer">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h5 class="panel-title">by <%= answer.user.email.split('@')[0] %></h5>
+          </div>
+          <div class="panel-body">
+            <p><%= answer.created_at.localtime.strftime("answered  %b %d, %y at %I:%M%p") %></p> 
+            <div class="btn-group btn-group-xs pull-right" role="group">
+              <% if answer.user == current_user %>
+                <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-default' %>
+                <%= link_to 'Delete', question_answer_path(@question, answer), :method => :delete, data: { confirm: "Are you sure you want to delete this entry?" }, class: 'btn btn-default' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <hr>
+<% end %>
+
+      
+<% if user_signed_in? %>
+  <div class="margin">
+    <%= render partial: 'answers/form' %>
+  </div>
+<% end %>

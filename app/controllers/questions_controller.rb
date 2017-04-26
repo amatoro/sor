@@ -7,6 +7,9 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+
+    @answer = Answer.new
+    @question.answers
   end
 
   def new
@@ -16,9 +19,11 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user = current_user
+
+
     if @question.save
       flash[:notice] = "The question has been saved"
-      redirect_to questions_path
+      redirect_to question_path(@question)
     else
       if @question.errors.any?
         @question.errors.full_messages.each do |message| 
@@ -36,7 +41,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
     else
       flash[:alert] = "You're not allowed to be here"
-      redirect_to questions_path
+      redirect_to question_path
     end
   end
 
