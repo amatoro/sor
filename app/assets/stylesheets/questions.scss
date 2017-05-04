@@ -64,16 +64,40 @@ nav.navbar {
 
 //Panels 
 
-.panel-title {
-  font-size: 12px;
+
+.panel {
+  border-radius: 2px;
+
+  .panel-heading {
+    padding:5px 15px;
+  }
+
+  .panel-title {
+    font-size: 12px;
+  }
+
+  .panel-body {
+    font-size: 10px;
+    padding:5px;
+    text-align: center;
+
+    .btn-group {
+      margin-top:10px;
+    }
+  }
 }
 
-.panel-body {
-  font-size: 10px;
-  padding:5px;
+.markdown th, .markdown td {
   text-align: center;
+}
 
-  .btn-group {
-    margin-top:10px;
-  }
+
+
+
+
+.btn-default {
+  background-color:#0AAFFA;
+  color:#FFFFFF;
+  border-color: #26BEFF;
+  border-radius:2px;
 }

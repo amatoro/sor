@@ -7,9 +7,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-
-    @answer = Answer.new
-    @question.answers
   end
 
   def new
@@ -19,7 +16,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user = current_user
-
+    
 
     if @question.save
       flash[:notice] = "The question has been saved"

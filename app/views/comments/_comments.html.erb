@@ -1,0 +1,24 @@
+<% commentable.comments.each do |comment| %>
+  <div class="row comments-content">
+    <div class="col-xs-1 col-md-1"></div>
+    <div class="col-xs-12 col-md-9">
+      <hr>
+      <div class="col-xs-10 col-md-11">
+        <p><%= comment.content %> &horbar; <span class="label label-default"> <%= comment.user.email.split('@')[0] %></span> <span class="date"><%= comment.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></span></p>
+      </div>
+
+      <div class="col-xs-2 col-md-1">
+        <% if commentable.user == current_user %>
+          <%= link_to [:edit, dependable, commentable, comment] do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to [dependable, commentable, comment], :method => :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+<% end %>

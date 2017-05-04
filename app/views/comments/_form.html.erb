@@ -1,0 +1,20 @@
+<div class="row comments-form">
+  <div class="col-xs-1 col-md-1"></div>
+  <div class="col-xs-12 col-md-9">
+    <% if user_signed_in? %>
+    <hr>
+    <div class="question-comments">
+      <div class="new-comment">
+        <%= form_for ([ dependable, commentable, Comment.new ]) do |f| %>
+          <h5>Comments</h5>
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control content_area', rows: 2, placeholder: 'Use comments to reply to other users or notify them of changes. If you are adding new information, edit your post instead of commenting.' %>
+          </div>
+          <%= f.submit "Add Comment", class: 'btn btn-default pull-right' %>
+        <% end %> 
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-xs-2 col-md-2"></div>
+</div>

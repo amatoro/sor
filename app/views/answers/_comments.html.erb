@@ -1,0 +1,11 @@
+<%= form_for ([ @question, answer, Comment.new ]) do |f| %> 
+
+<h5>Comentario</h5>
+
+  <div class="form-group">
+    <%= f.text_area :content, class: 'form-control content_area', rows: 2 %>
+  </div>
+  
+  <%= f.submit "Comment", class: 'btn btn-default' %>
+ 
+<% end %> 
