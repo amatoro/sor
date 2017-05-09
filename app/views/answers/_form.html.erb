@@ -1,14 +1,11 @@
-<% if user_signed_in? %>
+<%= form_for ([ @question, Answer.new ]) do |f| %>
 
-  <%= form_for ([ @question, Answer.new ]) do |f| %>
+<h3>Your Answer</h3>
 
-  <h3>Your Answer</h3>
-
-    <div class="form-group">
-      <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
-    </div>
-    
-    <%= f.submit "Post your answer", class: 'btn btn-default' %>
-   
-  <% end %>
-<% end %> 
+  <div class="form-group">
+    <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
+  </div>
+  
+  <%= f.submit "Post your answer", class: 'btn btn-default' %>
+ 
+<% end %>

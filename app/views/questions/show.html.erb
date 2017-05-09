@@ -41,17 +41,27 @@
 
 <%= render 'comments/comments', dependable: nil, commentable: @question %>
 <%= render 'comments/form', dependable: nil, commentable: @question %>
-     
+ 
+<% if user_signed_in? %>    
 <hr>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="page-header">
-      <h3><%= @question.answers.count %> <%= "Answer".pluralize(@question.answers.count)  %></h3>
+
+
+<% if @answers.present? %>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h3><%= @question.answers.count %> <%= "Answer".pluralize(@question.answers.count)  %></h3>
+      </div>
     </div>
   </div>
-</div>
 
+<% else %>
+
+  <h4>Know someone who can answer? Share a link to this question via email, Google+, Twitter, or Facebook. </h4>
+
+<% end %>
 
 <% @question.answers.each do |answer| %>
   <div class="row">
@@ -88,9 +98,13 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-8">
     <%= render partial: 'answers/form' %>
   </div>
+  <div class="col-hidden-xs col-md-1"></div>
+  
+  <%= render 'markdown-help' %>
+  
 </div>
 
-    
+<% end %>    

@@ -1,21 +1,27 @@
-<% if user_signed_in? %>
-  <div class="row">
-    <div class="col-xs-12 margin">
-      <%= link_to 'New Question', new_question_path, class: 'btn btn-default pull-right' %>
-    </div>
-  </div>
-<% end %>
-
 <div class="row">
+  <div class="col-xs-12 margin">
+    <%= link_to 'New Question', new_question_path, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+
+
+
 <% if @questions.present? %>
   <% @questions.each do |question| %>
-    <div class="col-xs-12">
-      <div class="page-header">
-        <h3><%= link_to question.title, question %></h3>
-      </div>
-      <h5></h5>
-      <h6><%= question.updated_at.localtime.strftime("Created on %d/%m/%Y at %I:%M%p") %></h6>    
-    </div>
+<div class="row">
+  <div class="col-xs-1 text-center">
+    <span class="votes">#</span><p>Votos</p>
+  </div>
+  <div class="col-xs-1 text-center">
+    <span class="answers"><%= question.answers.count %></span><p>Respuestas</p>
+  </div>
+  <div class="col-xs-10">
+    <p><b><%= link_to question.title, question %></b></p>
+    <p><small>Asked <%= distance_of_time_in_words(question.created_at, Time.now) %> ago <%=  self.change %></small></p>
+    
+  </div>
+</div>
+<hr>  
   <% end %>
 <% end %>
-</div>
+
