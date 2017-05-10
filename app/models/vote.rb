@@ -7,6 +7,6 @@ class Vote < ApplicationRecord
   validate :ensure_not_author
 
   def ensure_not_author
-    errors.add :user, "you cannot vote for your own question" if votable.user_id == user_id
+    errors.add :user, "you cannot up vote your own #{votable_type}"  if votable.user_id == user_id
   end
 end

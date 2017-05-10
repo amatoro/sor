@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :answers, except: [:index] do
       #resources :votes, only: [:create, :destroy]
       resources :comments, except: [:index], module: :answers
+      resources :votes, only: [:create, :destroy], module: :answers
     end
 
   end
