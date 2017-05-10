@@ -8,20 +8,20 @@
 
 <% if @questions.present? %>
   <% @questions.each do |question| %>
-<div class="row">
-  <div class="col-xs-1 text-center">
-    <span class="votes">#</span><p>Votos</p>
-  </div>
-  <div class="col-xs-1 text-center">
-    <span class="answers"><%= question.answers.count %></span><p>Respuestas</p>
-  </div>
-  <div class="col-xs-10">
-    <p><b><%= link_to question.title, question %></b></p>
-    <p><small>Asked <%= distance_of_time_in_words(question.created_at, Time.now) %> ago <%=  self.change %></small></p>
-    
-  </div>
-</div>
-<hr>  
+    <div class="row">
+      <div class="col-xs-1 text-center">
+        <span class="votes"><%= question.votes.count %></span><p><%= "Vote".pluralize(question.answers.count) %></p>
+      </div>
+      <div class="col-xs-1 text-center">
+        <span class="answers"><%= question.answers.count %></span><p><%= "Answer".pluralize(question.answers.count) %></p>
+      </div>
+      <div class="col-xs-10">
+        <p><b><%= link_to question.title, question %></b></p>
+        <p><small>Asked by <%= question.user.email.split('@')[0] %> <%= distance_of_time_in_words(question.created_at, Time.now) %> ago</small></p>
+        
+      </div>
+    </div>
+    <hr>  
   <% end %>
 <% end %>
 

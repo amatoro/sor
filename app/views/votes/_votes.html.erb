@@ -1,0 +1,23 @@
+<div class="vote">
+  <div class="text-center">
+    <% if @question.voted_by? current_user %>
+      <%= link_to question_votes_path(@question), method: :create, class: 'upvote on', title: 'This question shows research effort; it is useful and clear' do %>
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      <% end %>
+    <% else %>
+      <%= link_to question_votes_path(@question), method: :create, class: 'upvote off', title: 'This question shows research effort; it is useful and clear' do %>
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="text-center vote-count"><%= @question.votes.count %></div>
+  <div class="text-center">
+    <% @question.votes.each do |vote| %>
+      <% if vote.user_id == current_user.id %>
+        <%= link_to question_vote_path(@question, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

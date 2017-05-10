@@ -1,5 +1,20 @@
 <div class="row">
+  <div class="col-xs-12 ">
+    <%= link_to 'Cancel', :back, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-12">
-    <%= render 'form', action: 'Save changes' %>
+    <div class="page-header">
+      <h2>Edit Answer</h2>
+    </div>
+        <%= form_for ([ @question, @answer ]) do |f| %>
+          <h5>Comments</h5>
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
+          </div>
+          <%= f.submit "Save Changes", class: 'btn btn-default pull-right' %>
+        <% end %> 
   </div>
 </div>

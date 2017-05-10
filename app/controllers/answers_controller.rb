@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
 
   def edit
     @answer = Answer.find(params[:id])
-    @question = Question.find(@answer.question_id)
+    @question = Question.find(params[:question_id])
 
     if @answer.user == current_user
       @answer = Answer.find(params[:id])

@@ -1,12 +1,21 @@
 class QuestionsController < ApplicationController
+  # include ActiveModel::Dirty
+  # define_attribute_methods :updated_at
+
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+
+  # def last_action
+  #   if @question.changed?
+  #   end
+  # end
+  
 
   def index
     @questions = Question.all
   end
 
   def show
-    @question = Question.find(params[:id])
   end
 
   def new
@@ -15,8 +24,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.user = current_user
-    
+    @question.user = current_user  
 
     if @question.save
       flash[:notice] = "The question has been saved"
@@ -32,10 +40,8 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
-
     if @question.user == current_user
-      @question = Question.find(params[:id])
+      @question
     else
       flash[:alert] = "You're not allowed to be here"
       redirect_to question_path
@@ -43,7 +49,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = Question.find(params[:id])
     if @question.update(question_params)
       flash[:notice] = "The question has been updated"
       redirect_to question_path(@question)
@@ -54,7 +59,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
+    @vote = @vote_id
 
     if @question.user == current_user
       @question.destroy
@@ -71,4 +76,9 @@ class QuestionsController < ApplicationController
   def question_params 
     params.require(:question).permit(:title, :content)
   end
+
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
 end

@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-xs-12 ">
-    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right' %>
+    <%= link_to 'Cancel', :back, class: 'btn btn-default pull-right' %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
     <div class="page-header">
-      <h2>Edit Question</h2>
+      <h2>Edit Comment</h2>
     </div>
         <%= form_for ([ @question, @answer, @comment ]) do |f| %>
           <h5>Comments</h5>
           <div class="form-group">
-            <%= f.text_area :content, class: 'form-control content_area', rows: 2, placeholder: 'Use comments to reply to other users or notify them of changes. If you are adding new information, edit your post instead of commenting.' %>
+            <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
           </div>
           <%= f.submit "Edit Comment", class: 'btn btn-default pull-right' %>
         <% end %> 

@@ -97,3 +97,29 @@ nav.navbar {
   border-color: #26BEFF;
   border-radius:2px;
 }
+
+
+ 
+/* ==|== VOTES ==|== */
+
+.vote {
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .vote-count {
+    color:#989898;
+    font-size:150%;
+  }
+
+  .fa.fa-caret-up, .fa.fa-caret-down {
+    font-size: 300%;
+    display: inline;
+  }
+
+  .off {
+    color:#989898;
+  }
+}
+
