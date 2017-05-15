@@ -1,4 +1,5 @@
 class Answers::CommentsController < CommentsController
+  before_action :set_answer_id, only: [:edit, :update, :create, :destroy]
 
   def edit
     @comment = @answer.comments.find(params[:id])

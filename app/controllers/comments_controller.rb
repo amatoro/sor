@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question_id, only: [:edit, :update, :create, :destroy]
-  before_action :set_answer_id, only: [:edit, :update, :create, :destroy]
   
   private
 
