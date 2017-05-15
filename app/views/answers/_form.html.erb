@@ -3,7 +3,7 @@
 <h3>Your Answer</h3>
 
   <div class="form-group">
-    <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
+    <%= f.text_area :content, class: 'form-control content_area', rows: 10, required: true %>
   </div>
   
   <%= f.submit "#{action}", class: 'btn btn-default' %>

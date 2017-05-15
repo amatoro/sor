@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 ">
-    <%= link_to 'Back', question_path, class: 'btn btn-default pull-right margin-side' %>
+    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right margin-side' %>
 
   </div>
 </div>
@@ -99,11 +99,11 @@
       <div class="vote">
         <div class="text-center">
           <% if answer.voter? current_user %>
-            <%= link_to question_answer_votes_path(@question, answer), method: :create, class: 'upvote on', title: 'This question shows research effort; it is useful and clear' do %>
+            <%= link_to question_answer_votes_path(@question, answer), method: :create, class: 'upvote on', title: 'This answer shows research effort; it is useful and clear' do %>
               <i class="fa fa-caret-up" aria-hidden="true"></i>
             <% end %>
           <% else %>
-            <%= link_to question_answer_votes_path(@question, answer), method: :create, class: 'upvote off', title: 'This question shows research effort; it is useful and clear' do %>
+            <%= link_to question_answer_votes_path(@question, answer), method: :create, class: 'upvote off', title: 'This answer shows research effort; it is useful and clear' do %>
               <i class="fa fa-caret-up" aria-hidden="true"></i>
             <% end %>
           <% end %>
