@@ -3,7 +3,6 @@ class Questions::VotesController < VotesController
   def create
     @vote = @question.votes.new(vote_params)
     
-
     if @vote.save
       flash[:notice] = "Thanks for contributing!"
     else

@@ -18,7 +18,7 @@ class Question < ApplicationRecord
 
   validates :title, :content, presence: true
 
-  def voted_by?(user)
+  def voter?(user)
     votes.exists?(user: user)
   end
 end

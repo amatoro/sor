@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
     else
       if @question.errors.any?
         @question.errors.full_messages.each do |message| 
-          flash[:alert] = "There was a failure, the question couldn't been saved. Reason: " + message
+          flash[:alert] = "The question couldn't been saved. Reason: " + message
         end
       end
       render :new

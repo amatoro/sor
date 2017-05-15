@@ -15,7 +15,7 @@
   <div class="col-xs-1 col-md-1">
     <div class="vote">
       <div class="text-center">
-        <% if @question.voted_by? current_user %>
+        <% if @question.voter? current_user %>
           <%= link_to question_votes_path(@question), method: :create, class: 'upvote on', title: 'This question shows research effort; it is useful and clear' do %>
             <i class="fa fa-caret-up" aria-hidden="true"></i>
           <% end %>
@@ -28,10 +28,12 @@
       <div class="text-center vote-count"><%= @question.votes.count %></div>
       <div class="text-center">
         <% @question.votes.each do |vote| %>
-          <% if @question.voted_by? current_user && vote.user_id == current_user.id %>
-              <%= link_to question_vote_path(@question, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-              <% end %>
+          <% if user_signed_in? %>
+            <% if vote.user_id == current_user.id %>
+                <%= link_to question_vote_path(@question, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -65,7 +67,10 @@
 </div>
 
 <%= render 'comments/comments', dependable: nil, commentable: @question %>
-<%= render 'comments/form', dependable: nil, commentable: @question %>
+<% if user_signed_in? %>
+  <%= render 'comments/form', dependable: nil, commentable: @question %>
+<% end %>
+
 
 <hr>
 
@@ -87,12 +92,13 @@
 
 <% end %>
 
+
 <% @question.answers.each do |answer| %>
   <div class="row">
     <div class="col-xs-1 col-md-1">
       <div class="vote">
         <div class="text-center">
-          <% if answer.voted_by? current_user %>
+          <% if answer.voter? current_user %>
             <%= link_to question_answer_votes_path(@question, answer), method: :create, class: 'upvote on', title: 'This question shows research effort; it is useful and clear' do %>
               <i class="fa fa-caret-up" aria-hidden="true"></i>
             <% end %>
@@ -105,9 +111,11 @@
         <div class="text-center vote-count"><%= answer.votes.count %></div>
         <div class="text-center">
           <% answer.votes.each do |vote| %>
-            <% if answer.voted_by? current_user && vote.user_id == current_user.id %>
-              <%= link_to question_answer_vote_path(@question, answer, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <% if user_signed_in? %>
+              <% if vote.user_id == current_user.id %>
+                <%= link_to question_answer_vote_path(@question, answer, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
@@ -140,7 +148,9 @@
   </div>
 
   <%= render 'comments/comments', dependable: @question, commentable: answer %>
-  <%= render 'comments/form', dependable: @question, commentable: answer %>
+  <% if user_signed_in? %>
+    <%= render 'comments/form', dependable: @question, commentable: answer %>
+  <% end %>
 
   <hr>
 

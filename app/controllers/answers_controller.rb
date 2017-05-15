@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  #before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:edit, :update, :destroy]
 
   def create
     @answer = Answer.new(answer_params)
@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
     else
       if @answer.errors.any?
         @answer.errors.full_messages.each do |message| 
-          flash[:alert] = "There was a failure, the answer couldn't been saved. Reason: " + message
+          flash[:alert] = "The answer couldn't been saved. Reason: " + message
         end
       end
     end
@@ -21,11 +21,10 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @answer = Answer.find(params[:id])
     @question = Question.find(params[:question_id])
 
     if @answer.user == current_user
-      @answer = Answer.find(params[:id])
+      @answer
     else
       flash[:alert] = "You're not allowed to edit this answer"
       redirect_to question_path
@@ -33,8 +32,6 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer = Answer.find(params[:id])
-
     if @answer.update(answer_params)
       flash[:notice] = "The answer has been updated"
       redirect_to @answer.question
@@ -45,8 +42,6 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    
     if @answer.user == current_user
       @answer.destroy
       flash[:alert] = "The answer has been deleted"
@@ -60,5 +55,9 @@ class AnswersController < ApplicationController
 
   def answer_params 
     params.require(:answer).permit(:content)
+  end
+
+  def set_answer
+    @answer = Answer.find(params[:id])
   end
 end

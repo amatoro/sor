@@ -38,7 +38,6 @@ class Questions::CommentsController < CommentsController
     @comment = Comment.find(params[:id])
     @comment.user = current_user
 
-
     if @comment.user == current_user
       @comment.destroy
       flash[:alert] = "The comment has been deleted"
