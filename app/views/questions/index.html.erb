@@ -4,8 +4,6 @@
   </div>
 </div>
 
-
-
 <% if @questions.present? %>
   <% @questions.each do |question| %>
     <div class="row">
@@ -18,7 +16,6 @@
       <div class="col-xs-10">
         <p><b><%= link_to question.title, question %></b></p>
         <p><small>Asked by <%= question.user.email.split('@')[0] %> <%= distance_of_time_in_words(question.created_at, Time.now) %> ago</small></p>
-        
       </div>
     </div>
     <hr>  

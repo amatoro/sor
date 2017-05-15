@@ -5,12 +5,10 @@ class Questions::CommentsController < CommentsController
   end
 
   def edit
-    @question = Question.find(params[:question_id])
     @comment = @question.comments.find(params[:id])
   end
 
   def update
-    @question = Question.find(params[:question_id])
     @comment = @question.comments.find(params[:id])
     if @comment.update(comment_params)
       flash[:notice] = "The comment has been updated"
@@ -22,7 +20,6 @@ class Questions::CommentsController < CommentsController
   end
 
   def create
-    @question = Question.find(params[:question_id])
     @comment = @question.comments.new(comment_params)
 
     if @comment.save
@@ -38,7 +35,6 @@ class Questions::CommentsController < CommentsController
   end
 
   def destroy
-    @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
     @comment.user = current_user
 

@@ -1,13 +1,15 @@
 <div class="row">
   <div class="col-xs-12 ">
     <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right margin-side' %>
+
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
     <div class="page-header">
-      <h2><%= @question.title %></h2>
+      <h2><%= @question.title %><%= link_to 'New Question', new_question_path, class: 'btn btn-default pull-right' %></h2>
+
     </div>
   </div>
   <div class="col-xs-1 col-md-1">
@@ -26,10 +28,10 @@
       <div class="text-center vote-count"><%= @question.votes.count %></div>
       <div class="text-center">
         <% @question.votes.each do |vote| %>
-          <% if vote.user_id == current_user.id %>
-            <%= link_to question_vote_path(@question, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
-              <i class="fa fa-caret-down" aria-hidden="true"></i>
-            <% end %>
+          <% if @question.voted_by? current_user && vote.user_id == current_user.id %>
+              <%= link_to question_vote_path(@question, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+              <% end %>
           <% end %>
         <% end %>
       </div>
@@ -103,7 +105,7 @@
         <div class="text-center vote-count"><%= answer.votes.count %></div>
         <div class="text-center">
           <% answer.votes.each do |vote| %>
-            <% if vote.user_id == current_user.id %>
+            <% if answer.voted_by? current_user && vote.user_id == current_user.id %>
               <%= link_to question_answer_vote_path(@question, answer, vote.id), method: :delete, class: 'downvote off', title: 'This question does not show any research effort; it is unclear or not useful' do %>
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
               <% end %>
@@ -139,18 +141,19 @@
 
   <%= render 'comments/comments', dependable: @question, commentable: answer %>
   <%= render 'comments/form', dependable: @question, commentable: answer %>
+
   <hr>
 
 <% end %>
 <% if user_signed_in? %>  
-<div class="row">
-  <div class="col-xs-8">
-    <%= render 'answers/form', action: 'Post Your Answer' %>
+  <div class="row">
+    <div class="col-xs-1 col-md-1"></div>
+    <div class="col-xs-8">
+      <%= render 'answers/form', action: 'Post Your Answer' %>
+    </div>
+    <div class="col-md-1"></div>
+    
+    <%= render 'markdown-help' %>
+    
   </div>
-  <div class="col-hidden-xs col-md-1"></div>
-  
-  <%= render 'markdown-help' %>
-  
-</div>
-
 <% end %>    
