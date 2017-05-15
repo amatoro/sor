@@ -10,9 +10,8 @@
       <h2>Edit Answer</h2>
     </div>
         <%= form_for ([ @question, @answer ]) do |f| %>
-          <h5>Comments</h5>
           <div class="form-group">
-            <%= f.text_area :content, class: 'form-control content_area', rows: 10 %>
+            <%= f.text_area :content, class: 'form-control content_area', rows: 20, required: true %>
           </div>
           <%= f.submit "Save Changes", class: 'btn btn-default pull-right' %>
         <% end %> 

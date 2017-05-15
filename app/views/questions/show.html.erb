@@ -1,18 +1,17 @@
 <div class="row">
   <div class="col-xs-12 ">
-    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right margin-side' %>
+    <%= link_to 'Back', questions_path, class: 'btn btn-default pull-right bck' %>
 
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-10 col-sm-12 pull-right">
     <div class="page-header">
-      <h2><%= @question.title %><%= link_to 'New Question', new_question_path, class: 'btn btn-default pull-right' %></h2>
-
+      <h2><%= @question.title %><%= link_to 'New Question', new_question_path, class: 'hidden-xs btn btn-default pull-right' %></h2>
     </div>
   </div>
-  <div class="col-xs-1 col-md-1">
+  <div class="col-xs-2 col-sm-1 pull-left">
     <div class="vote">
       <div class="text-center">
         <% if @question.voter? current_user %>
@@ -25,7 +24,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="text-center vote-count"><%= @question.votes.count %></div>
+      <h2 class="text-center vote-count"><%= @question.votes.count %></h2>
       <div class="text-center">
         <% @question.votes.each do |vote| %>
           <% if user_signed_in? %>
@@ -39,12 +38,12 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-8 col-md-9">
+  <div class="col-xs-12 col-sm-9">
     <div class="content"> 
       <p><%= markdown(@question.content) %></p>
     </div>
   </div>
-  <div class="col-xs-3 col-md-2">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0">
     <div class="content-footer">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -93,9 +92,9 @@
 <% end %>
 
 
-<% @question.answers.each do |answer| %>
+<% @question.answers.reverse_each do |answer| %>
   <div class="row">
-    <div class="col-xs-1 col-md-1">
+    <div class="col-xs-2 col-sm-1">
       <div class="vote">
         <div class="text-center">
           <% if answer.voter? current_user %>
@@ -108,7 +107,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="text-center vote-count"><%= answer.votes.count %></div>
+        <h2 class="text-center vote-count"><%= answer.votes.count %></h2>
         <div class="text-center">
           <% answer.votes.each do |vote| %>
             <% if user_signed_in? %>
@@ -122,12 +121,12 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-9 col-md-9">
+    <div class="col-xs-10 col-sm-9">
       <div class="content">
         <p><%= markdown(answer.content) %></p>
       </div>
     </div>   
-    <div class="col-xs-2 col-md-2">
+    <div class="col-xs-10 col-xs-offset-2 col-sm-2 col-sm-offset-0">
       <div class="footer">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -157,11 +156,11 @@
 <% end %>
 <% if user_signed_in? %>  
   <div class="row">
-    <div class="col-xs-1 col-md-1"></div>
-    <div class="col-xs-8">
+    <div class="hidden-xs hidden-sm col-md-1"></div>
+    <div class="col-xs-12 col-sm-9 col-md-8">
       <%= render 'answers/form', action: 'Post Your Answer' %>
     </div>
-    <div class="col-md-1"></div>
+    <div class="hidden-xs hidden-sm col-md-1"></div>
     
     <%= render 'markdown-help' %>
     

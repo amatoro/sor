@@ -8,10 +8,12 @@
   <% @questions.each do |question| %>
     <div class="row">
       <div class="col-xs-1 text-center">
-        <span class="votes"><%= question.votes.count %></span><p><%= "Vote".pluralize(question.answers.count) %></p>
+        <span class="votes"><%= question.votes.count %></span><p class="hidden-xs"><%= "Vote".pluralize(question.answers.count) %></p>
+        <span class="visible-xs"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
       </div>
       <div class="col-xs-1 text-center">
-        <span class="answers"><%= question.answers.count %></span><p><%= "Answer".pluralize(question.answers.count) %></p>
+        <span class="answers"><%= question.answers.count %></span><p class="hidden-xs"><%= "Answer".pluralize(question.answers.count) %></p>
+        <span class="visible-xs"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
       </div>
       <div class="col-xs-10">
         <p><b><%= link_to question.title, question %></b></p>
@@ -21,4 +23,3 @@
     <hr>  
   <% end %>
 <% end %>
-

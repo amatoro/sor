@@ -6,12 +6,39 @@
 /* ==|== General Styles ==|== */
 body {
   color:#333335;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
 }
 
-.margin {margin:0 0 20px}
-
-.margin-side {margin:0 10px}
-
+h1, .h1 {
+  font-size: 2.571rem
+}
+h2, .h2 {
+  font-size: 2.143rem;
+}
+h3, .h3 {
+  font-size: 1.714rem;
+}
+h4, .h4 {
+  font-size: 1.286rem;
+}
+h5, .h5 {
+  font-size: 1.000rem;
+}
+h6, .h6 {
+  font-size:0.857rem;
+}
+.margin {
+  margin:0 0 20px
+}
+.margin-side {
+  margin:0 10px
+}
 a {
   color:#26BEFF;
   text-decoration: none;
@@ -21,6 +48,12 @@ a {
 nav.navbar {
   background-color: #0AAFFA;
   border-radius: 0;
+
+  .container .navbar-brand { 
+    margin-left: 0;
+    font-family: 'SuperGroteskPro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
   a {
     color:#ffffff;
     text-decoration: none;
@@ -35,6 +68,14 @@ nav.navbar {
     .icon-bar {
       background-color:#FFFFFF;
     }
+  }
+
+  .fa {
+    color: #ffffff;
+    font-size: 3rem;
+    line-height: 5rem;
+    margin-left: 10px;
+    float:left;
   }
 }
 
@@ -79,29 +120,42 @@ nav.navbar {
   }
 }
 
-.markdown th, .markdown td, .markdown a {
-  text-align: center;font-size:90%;
-}
 
-.btn-default {
+
+.btn-default, .btn-default:active {
   background-color:#0AAFFA;
   color:#FFFFFF;
   border-color: #26BEFF;
   border-radius:2px;
+
+
+  &:hover {
+    background-color:#26BEFF;
+    color:#FFFFFF;
+    border-color: #0AAFFA;
+  }
+
+  &.bck {
+    background-color:#FAF6ED;
+    color:#333335;
+    border-color: #E5E5E5;
+  }
 }
  
 /* ==|== VOTES ==|== */
 
 .vote {
-  a:hover {
+  a:hover, a:active {
     text-decoration: none;
   }
   .vote-count {
-    color:#989898;
-    font-size:150%;
+    color:#333335;
   }
+
+  h1, h2 { margin:0;}
+
   .fa.fa-caret-up, .fa.fa-caret-down {
-    font-size: 300%;
+    font-size: 4.5rem;
     display: inline;
   }
   .off {
@@ -110,6 +164,38 @@ nav.navbar {
 }
 
 /* ==|== Markdown ==|== */
+.markdown {
+  margin-top: 2rem;
+}
+.markdown th, .markdown td, .markdown a {
+  text-align: center;font-size:90%;
+}
 pre code {
   font-size: 85%;
+}
+
+
+/* ==|== Footer ==|== */
+footer {
+  background-color: #333335;
+  color: #FAF6ED;
+  margin-top: 100px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  text-align: center;
+  position: relative;
+  bottom:0;
+
+  h4 {width: 90%;margin:0 5%;}
+}
+
+@media (max-width: 768px) {
+  .vote {
+    .fa.fa-caret-up, .fa.fa-caret-down {
+      font-size: 4rem;
+    }
+  }
+  .page-header {
+    margin:30px 0 10px;
+  }
 }
