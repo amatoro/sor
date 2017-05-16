@@ -21,4 +21,8 @@ class Question < ApplicationRecord
   def voter?(user)
     votes.exists?(user: user)
   end
+
+  def self.search(search)
+    where('title like ?', "%#{search}%") 
+  end
 end

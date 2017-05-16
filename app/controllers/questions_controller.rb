@@ -12,7 +12,11 @@ class QuestionsController < ApplicationController
   
 
   def index
-    @questions = Question.all
+    @questions = Question.all.reverse
+
+    if params[:q]
+      @questions = Question.search(params[:q]).reverse
+    end
   end
 
   def show

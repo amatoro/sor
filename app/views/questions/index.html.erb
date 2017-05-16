@@ -4,6 +4,14 @@
   </div>
 </div>
 
+<% if @questions.blank? %>
+<div class="row">
+  <div class="col-xs-12 margin text-center">
+    <h2>There are no questions containing "<%= params[:q] %>". Do you want to create a new question?</h2>
+  </div>
+</div>
+<% end %>
+
 <% if @questions.present? %>
   <% @questions.each do |question| %>
     <div class="row">
